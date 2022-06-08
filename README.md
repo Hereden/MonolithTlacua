@@ -1,2 +1,34 @@
 # MonolithTlacua
 Busqueda de implementar el proyecto integrador como monolito
+
+# Herramientas
+ - JHipster
+ - Angular
+ - PrimeNG
+ - RxJava 
+ - Jasper Reports
+# Inicialización del proyecto
+
+1. Tener nuestra carpeta lista
+   1. mkdir MonolithTlacua && cd MonolithTlacua
+2. Si no tenemos instalado Jhipster, instalarlo
+   1. npm install -g generate-jhipster
+3. Ejecutar el comando de JHipster "jhipster"
+   1. Selecionar la configuración del proyecto: 
+   2. N / Monolitih / <enter> / Y / <enter> / HTTP / SQL / POSTGRESQL / POSTGRESQL / MAVEN / N / <enter> / Angular / N / Darkfly / Primary / N / Spanish / Cypress,  / N 
+4. Pasamos a movernos a la carpeta de Angular a instalar primeNG
+   1. cd src/main/webapp 
+   2. npm install primeng --save
+   3. npm install primeicons --save
+5. Agregamos los estilos en angular.json:
+
+```json
+
+"node_modules/primeicons/primeicons.css",
+"node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+"node_modules/primeng/resources/primeng.min.css",
+
+```
+
+6.Cualquier import que hagamos de PrimeNG hay que importarlo a Home.module.
+ 
