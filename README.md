@@ -47,7 +47,7 @@ Busqueda de implementar el proyecto integrador como monolito
    1. npm i browser-sync --save
 8. Creamos nuestro modelo con JDL, tomando en cuenta los tipos de datos: <https://www.jhipster.tech/jdl/entities-fields#field-types-and-validations>
 
-9. Descargamos nuestro modelo, preferiblemente ponemos el archivo en una carpeta dentro de nuestro proyecto en mi caso "baseDatos", nuestro modelo debe de quedar algo así:
+9. Descargamos nuestro modelo, preferiblemente ponemos el archivo en la carpeta raíz de nuestro proyecto, nuestro modelo debe de quedar algo así:
 
    ```jdl
    entity Persona{
@@ -124,6 +124,5 @@ Busqueda de implementar el proyecto integrador como monolito
 10. Para crear nuestras identidades con Jhipster procedemos a ejecutar el siguiente comando donde dejemos el archivo .jdl
 
     ```bash
-        $ cd baseDatos
         $ jhipster jdl tlacuaRiders.jdl
     ```
