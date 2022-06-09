@@ -31,8 +31,11 @@ Busqueda de implementar el proyecto integrador como monolito
 
 "node_modules/primeicons/primeicons.css",
 "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+6. Ejecutamos el proyecto por primera vez:
+   1. npm start
+7. En caso de darnos un error de browser-sync, dejecutar
+   1. npm i browser-sync --save
+8. Cualquier import que hagamos de PrimeNG hay que importarlo a Home.module.
 "node_modules/primeng/resources/primeng.min.css",
 
 ```
-
-6.Cualquier import que hagamos de PrimeNG hay que importarlo a Home.module.
