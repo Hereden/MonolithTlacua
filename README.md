@@ -33,8 +33,18 @@ Busqueda de implementar el proyecto integrador como monolito
    "node_modules/primeng/resources/primeng.min.css",
    ```
 
-6. Ejecutamos el proyecto por primera vez:
-   1. npm start
+6. Ejecutamos el proyecto por primera vez la parte de angular:
+
+   ```bash
+   $ npm start
+
+   O podemos levantar el proyecto entero con:
+
+   $ ./mvnw
+   ```
+
 7. En caso de darnos un error de browser-sync, dejecutar
    1. npm i browser-sync --save
-8. Cualquier import que hagamos de PrimeNG hay que importarlo a Home.module.
+8. Creamos nuestro modelo con JDL, tomando en cuenta los tipos de datos: <https://www.jhipster.tech/jdl/entities-fields#field-types-and-validations>
+
+9. Descargamos nuestro modelo, preferiblemente ponemos el archivo en una carpeta dentro de nuestro proyecto
