@@ -1,0 +1,69 @@
+entity Persona{
+    nombre String required minlength(2),
+    apellido String required,
+    sexo Genero,
+    correo String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/) unique,
+    contrasena String required,
+    domicilio String
+
+}
+
+enum Genero{
+    MASCULINO, FEMENINO, OTRO
+}
+
+entity Articulos{
+    nombre String required minlength(2),
+    descripcion String required,
+    precio Float required,
+    stock Long required,
+    colores String,
+    imagenes String,
+    tam Tamanos required
+}
+
+enum Tamanos {
+    C, M, G, EG, EEG
+}
+
+
+entity Comentarios{
+    comentario String minlength(5)
+}
+
+
+entity ProductoOrden {
+    diaPedido ZonedDateTime required,
+    estado OrdenEstado required,
+    codigo String required
+}
+
+enum OrdenEstado {
+    COMPLETADO, PENDIENTE, CANCELADO
+}
+
+entity OrdenArticulo {
+    cantidad Integer required min(0),
+    total BigDecimal required min(0)
+}
+
+
+relationship ManyToOne {
+    OrdenArticulo{articulos(nombre) required} to Articulos
+}
+
+relationship OneToMany {
+    Persona{orden} to ProductoOrden{persona(correo) required},
+    ProductoOrden{ordenArticulo} to OrdenArticulo{orden(codigo) required},
+	Articulos to Comentarios{calificaciones},
+    Persona to Comentarios{comenta}
+}
+
+
+
+// Set pagination options
+paginate Articulos, Comentarios,ProductoOrden,OrdenArticulo with infinite-scroll
+paginate Persona with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct

@@ -47,4 +47,83 @@ Busqueda de implementar el proyecto integrador como monolito
    1. npm i browser-sync --save
 8. Creamos nuestro modelo con JDL, tomando en cuenta los tipos de datos: <https://www.jhipster.tech/jdl/entities-fields#field-types-and-validations>
 
-9. Descargamos nuestro modelo, preferiblemente ponemos el archivo en una carpeta dentro de nuestro proyecto
+9. Descargamos nuestro modelo, preferiblemente ponemos el archivo en una carpeta dentro de nuestro proyecto en mi caso "baseDatos", nuestro modelo debe de quedar algo así:
+
+   ```jdl
+   entity Persona{
+   nombre String required minlength(2),
+   apellido String required,
+   sexo Genero,
+   correo String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/) unique,
+   contrasena String required,
+   domicilio String
+   }
+
+   enum Genero{
+       MASCULINO, FEMENINO, OTRO
+   }
+
+   entity Articulos{
+       nombre String required minlength(2),
+       descripcion String required,
+       precio Float required,
+       stock Long required,
+       colores String,
+       imagenes String,
+       tam Tamanos required
+   }
+
+   enum Tamanos {
+       C, M, G, EG, EEG
+   }
+
+
+   entity Comentarios{
+       comentario String minlength(5)
+   }
+
+
+   entity ProductoOrden {
+       diaPedido ZonedDateTime required,
+       estado OrdenEstado required,
+       codigo String required
+   }
+
+   enum OrdenEstado {
+       COMPLETADO, PENDIENTE, CANCELADO
+   }
+
+   entity OrdenArticulo {
+       cantidad Integer required min(0),
+       total BigDecimal required min(0)
+   }
+
+
+   relationship ManyToOne {
+       OrdenArticulo{articulos(nombre) required} to Articulos
+   }
+
+   relationship OneToMany {
+       Persona{orden} to ProductoOrden{persona(correo) required},
+       ProductoOrden{ordenArticulo} to OrdenArticulo{orden(codigo) required},
+       Articulos to Comentarios{calificaciones},
+       Persona to Comentarios{comenta}
+   }
+
+
+
+   // Set pagination options
+   paginate Articulos, Comentarios,ProductoOrden,OrdenArticulo with infinite-scroll
+   paginate Persona with pagination
+
+   // Use Data Transfer Objects (DTO)
+   dto * with mapstruct
+
+   ```
+
+10. Para crear nuestras identidades con Jhipster procedemos a ejecutar el siguiente comando donde dejemos el archivo .jdl
+
+    ```bash
+        $ cd baseDatos
+        $ jhipster jdl tlacuaRiders.jdl
+    ```
